@@ -26,12 +26,6 @@ import java from "./tech/java.png";
 import postgreSql from "./tech/postgreSql.png";
 import python from "./tech/python.png";
 
-
-// import meta from "./company/meta.png";
-// import shopify from "./company/shopify.png";
-// import starbucks from "./company/starbucks.png";
-// import tesla from "./company/tesla.png";
-
 import banana from "./company/banana.png";
 import central from "./company/central.png";
 import hyundia from "./company/hyundia.png";

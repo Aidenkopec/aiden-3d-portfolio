@@ -178,27 +178,27 @@ const experiences = [
 const testimonials = [
     {
         testimonial:
-            "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-        name: "Sara Lee",
-        designation: "CFO",
-        company: "Acme Co",
-        image: "https://randomuser.me/api/portraits/women/4.jpg",
+            "I had the pleasure of working with Aiden on a complex web development project, and I was impressed with their ability to handle multiple tasks while maintaining the highest level of quality.",
+        name: "Ethan Nguyen",
+        designation: "Software Engineer",
+        company: "Mindsparkle",
+        image: "https://randomuser.me/api/portraits/men/90.jpg",
     },
     {
         testimonial:
-            "I've never met a web developer who truly cares about their clients' success like Rick does.",
-        name: "Chris Brown",
-        designation: "COO",
-        company: "DEF Corp",
-        image: "https://randomuser.me/api/portraits/men/5.jpg",
+            "Aiden is an exceptional developer and a joy to work with. His passion for programming and problem-solving is unmatched.",
+        name: "Nelson Torres",
+        designation: "Software Engineer",
+        company: "ByteForge",
+        image: "https://randomuser.me/api/portraits/men/11.jpg",
     },
     {
         testimonial:
-            "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-        name: "Lisa Wang",
-        designation: "CTO",
-        company: "456 Enterprises",
-        image: "https://randomuser.me/api/portraits/women/6.jpg",
+            "Aiden is a hardworking and detail-oriented software developer who consistently delivers high-quality work. Their ability to collaborate effectively with team members and communicate technical concepts clearly is a valuable asset.",
+        name: "Adrian Rhodes",
+        designation: "Software Developer",
+        company: "SAIT",
+        image: "https://randomuser.me/api/portraits/men/18.jpg",
     },
 ];
 

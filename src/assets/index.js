@@ -44,6 +44,7 @@ import tripguide from "./tripguide.png";
 
 import ai from "./ai.png";
 import youtube from "./youtube.png";
+import data from "./data.png";
 
 export {
     logo,
@@ -78,4 +79,7 @@ export {
     hyundia,
     sait,
     python,
+    ai,
+    youtube,
+    data
 };

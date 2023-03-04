@@ -27,6 +27,9 @@ import {
     java,
     postgreSql,
     python,
+    ai,
+    youtube,
+    data,
 } from "../assets";
 
 export const navLinks = [
@@ -203,7 +206,7 @@ const projects = [
     {
         name: "AI Image Generator",
         description:
-            "Transformed dreams into reality with AI-generated images using MERN stack, Tailwind, OpenAI's DALL-E, and Cloudinary for a stunning UX.",
+            "Transform dreams into reality with AI-generated images using the MERN stack, Tailwind, OpenAI's DALL-E, and Cloudinary. This project provides a stunning user experience like no other, taking you on a magical journey into a world of wonders!",
         tags: [
             {
                 name: "React",
@@ -224,13 +227,13 @@ const projects = [
 
 
         ],
-        image: carrent,
-        source_code_link: "https://github.com/",
+        image: ai,
+        source_code_link: "https://github.com/Aidenkopec/ai-image-generator",
     },
     {
-        name: "Job IT",
+        name: "YouTube Clone",
         description:
-            "Built a cutting-edge YouTube clone using React.js and Material UI 5, with seamless video streaming and RapidAPI integration",
+            "Built a revolutionary YouTube clone using React.js and Material UI 5. This cutting-edge platform offers seamless video streaming and effortless RapidAPI integration, delivering the ultimate viewing experience.",
         tags: [
             {
                 name: "React",
@@ -245,13 +248,13 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: jobit,
-        source_code_link: "https://github.com/",
+        image: youtube,
+        source_code_link: "https://github.com/Aidenkopec/Youtube_Clone",
     },
     {
-        name: "Trip Guide",
+        name: "Data Management Sorting Algorithms",
         description:
-            "High performance multi-sorting algorithm using Java with bubble, quick, insertion, selection, merge, and odd-even sorting algorithms. Tested to optimize data management",
+        "Developed a high-performance Java multi-sorting algorithm that utilizes bubble, quick, insertion, selection, merge, and odd-even sorting algorithms. This solution offers lightning-fast sorting capabilities, enabling optimal efficiency.",
         tags: [
             {
                 name: "Java",
@@ -266,8 +269,8 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: tripguide,
-        source_code_link: "https://github.com/",
+        image: data,
+        source_code_link: "https://github.com/Aidenkopec/Data-Management-Sorting-Algoritm",
     },
 ];
 

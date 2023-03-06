@@ -47,8 +47,7 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
-                I am a driven and creative individual with a passion for software development. As an innovative junior
-                software developer, I have gained verifiable experience in software architecture, database design, web
+                I am a driven junior software developer with experience in software architecture, database design, web
                 development, and object-oriented programming. I am proud to have supported company-wide business and
                 technology projects, exceeding quality expectations by gathering requirements, identifying user stories,
                 and developing applications, functionalities, and graphical user interfaces.
@@ -57,29 +56,16 @@ const About = () => {
                 My educational background includes a Diploma in Software Development from the Southern Alberta Institute
                 of Technology, where I gained valuable technical skills in Java, C++, Python, JavaScript, TypeScript,
                 React, Node.js, Express.js, AngularJS, Java Web, JSON, PostgreSQL, MySQL, NoSQL, MongoDB, HTML, and CSS.
-                I have also had the opportunity to work with development tools and environments such as IDE (IntelliJ
-                IDEA, MS Visual Studio), Slack Board, Git, GitHub, Gitlab, AWS, and Docker.
+                I have also worked with development tools and environments such as IDE (IntelliJ IDEA, MS Visual
+                Studio), Slack Board, Git, GitHub, Gitlab, AWS, and Docker.
                 <br/>
                 <br/>
-                As a hard-working and detail-oriented individual, I possess excellent problem-solving skills. I have
-                completed several impressive projects, including a cutting-edge AI image generation application using
-                MERN stack, a modern YouTube clone application using React.js and Material UI 5, a multi-sorting
-                algorithm using Java for data management purposes, and a graphical user interface for a Flight
-                Reservation System.
-                <br/>
-                <br/>
-                In my free time, I enjoy being active and spending time outdoors. I have been an avid skier
-                since I was a child and love hitting the slopes during the winter months. During the summer, I enjoy
-                hiking and exploring the beautiful natural landscapes that surround us. I also have a passion for hockey
-                and have over six years of experience officiating Junior A, B, Midget, and Bantam Hockey Teams in
-                Canada. Officiating has taught me the importance of teamwork, communication, and decision-making under
-                pressure.
-                <br/>
-                <br/>
-                I believe that my diverse set of technical skills, attention to detail, and passion for software
-                development make me a strong candidate for your team. I am confident that I can bring a lot of value to
-                the table and work collaboratively with others to achieve common goals. I am always eager to learn from
-                my colleagues and share my knowledge with them to ensure the success of the project.
+                I am a hard-working and detail-oriented problem solver who has completed several impressive projects,
+                including an AI image generation application, a modern YouTube clone application, a multi-sorting
+                algorithm, and a graphical user interface for a Flight Reservation System. In my free time, I enjoy
+                skiing, hiking, and officiating hockey games, which has taught me the importance of teamwork,
+                communication, and decision-making under pressure. I believe my diverse set of technical skills and
+                passion for software development make me a strong candidate for your team.
 
             </motion.p>
 

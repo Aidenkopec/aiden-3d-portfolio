@@ -68,7 +68,7 @@ const About = () => {
                 Reservation System.
                 <br/>
                 <br/>
-                As a hardIn my free time, I enjoy being active and spending time outdoors. I have been an avid skier
+                In my free time, I enjoy being active and spending time outdoors. I have been an avid skier
                 since I was a child and love hitting the slopes during the winter months. During the summer, I enjoy
                 hiking and exploring the beautiful natural landscapes that surround us. I also have a passion for hockey
                 and have over six years of experience officiating Junior A, B, Midget, and Bantam Hockey Teams in

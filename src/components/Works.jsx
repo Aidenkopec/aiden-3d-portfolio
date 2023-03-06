@@ -81,8 +81,8 @@ const Works = () => {
                     className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
                 >
                     Hey there! Welcome to my portfolio, where I've put together a collection of projects that showcase
-                    my skills and experience. I've included brief descriptions and links to code repositories and live
-                    demos for each project, so feel free to take a look around and see what catches your eye. These
+                    my skills and experience. I've included brief descriptions and links to code repositories for each
+                    project, so feel free to take a look around and see what catches your eye. These
                     projects reflect my passion for problem-solving, working with a variety of technologies, and
                     managing projects efficiently. I'm always looking to learn and improve, so be sure to check back
                     often for updates and new projects. Thanks for stopping by!

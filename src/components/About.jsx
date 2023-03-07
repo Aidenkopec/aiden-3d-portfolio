@@ -57,7 +57,7 @@ const About = () => {
                 of Technology, where I gained valuable technical skills in Java, C++, Python, JavaScript, TypeScript,
                 React, Node.js, Express.js, AngularJS, Java Web, JSON, PostgreSQL, MySQL, NoSQL, MongoDB, HTML, and CSS.
                 I have also worked with development tools and environments such as IDE (IntelliJ IDEA, MS Visual
-                Studio), Slack Board, Git, GitHub, Gitlab, AWS, and Docker.
+                Studio), Slack Board, Git, GitHub, GitLab, AWS, and Docker.
                 <br/>
                 <br/>
                 I am a hard-working and detail-oriented problem solver who has completed several impressive projects,
@@ -65,7 +65,7 @@ const About = () => {
                 algorithm, and a graphical user interface for a Flight Reservation System. In my free time, I enjoy
                 skiing, hiking, and officiating hockey games, which has taught me the importance of teamwork,
                 communication, and decision-making under pressure. I believe my diverse set of technical skills and
-                passion for software development make me a strong candidate for your team.
+                passion for software development makes me a strong candidate for your team.
 
             </motion.p>
 

@@ -31,11 +31,6 @@ import central from "./company/central.png";
 import hyundia from "./company/hyundia.png";
 import sait from "./company/sait.png";
 
-
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
-
 import ai from "./ai.png";
 import youtube from "./youtube.png";
 import data from "./data.png";
@@ -62,9 +57,7 @@ export {
     tailwind,
     typescript,
     threejs,
-    carrent,
-    jobit,
-    tripguide,
+
     aws,
     java,
     postgreSql,

@@ -47,7 +47,7 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
-                I am a driven junior software developer with experience in software architecture, database design, web
+                I am a driven software developer with experience in software architecture, database design, web
                 development, and object-oriented programming. I am proud to have supported company-wide business and
                 technology projects, exceeding quality expectations by gathering requirements, identifying user stories,
                 and developing applications, functionalities, and graphical user interfaces.

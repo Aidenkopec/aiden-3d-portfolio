@@ -191,7 +191,7 @@ const testimonials = [
     },
     {
         testimonial:
-            "Aiden is a hardworking and detail-oriented software developer who consistently delivers high-quality work. Their ability to collaborate effectively with team members and communicate technical concepts clearly is a valuable asset.",
+            "Aiden is a hardworking and detail-oriented software developer who consistently delivers high-quality work. His ability to collaborate effectively with team members and communicate technical concepts clearly is a valuable asset.",
         name: "Adrian Rhodes",
         designation: "Software Developer",
         company: "SAIT",

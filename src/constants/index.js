@@ -177,8 +177,8 @@ const testimonials = [
         testimonial:
             "I had the pleasure of working with Aiden on a complex web development project, and I was impressed with their ability to handle multiple tasks while maintaining the highest level of quality.",
         name: "Ethan Nguyen",
-        designation: "Software Engineer",
-        company: "Mindsparkle",
+        designation: "Software Developer",
+        company: "SAIT",
         image: "https://randomuser.me/api/portraits/men/90.jpg",
     },
     {

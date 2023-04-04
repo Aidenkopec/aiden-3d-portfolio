@@ -27,6 +27,7 @@ import {
     ai,
     youtube,
     data,
+    teevision,
 } from "../assets";
 
 export const navLinks = [
@@ -228,25 +229,25 @@ const projects = [
         source_code_link: "https://github.com/Aidenkopec/ai-image-generator",
     },
     {
-        name: "YouTube Clone",
+        name: "Teevision",
         description:
-            "Built a revolutionary YouTube clone using React.js and Material UI 5. This cutting-edge platform offers seamless video streaming and effortless RapidAPI integration, delivering the ultimate viewing experience.",
+            "Design the T-shirt of your dreams in stunning 3D! Unleash your creativity with React, ThreeJS, TailwindCSS, Framer Motion, and DALLE AI. Craft one-of-a-kind designs, add custom colors, and download with ease. Achieve a seamless user experience with responsive design and industry-standard best practices. Start creating now!",
         tags: [
             {
                 name: "React",
                 color: "blue-text-gradient",
             },
             {
-                name: "RapidAPI",
+                name: "ThreeJS",
                 color: "green-text-gradient",
             },
             {
-                name: "Material UI 5",
+                name: "Framer Motion",
                 color: "pink-text-gradient",
             },
         ],
-        image: youtube,
-        source_code_link: "https://github.com/Aidenkopec/Youtube_Clone",
+        image: teevision,
+        source_code_link: "https://github.com/Aidenkopec/project-3d-clothing-website",
     },
     {
         name: "Data Management Sorting Algorithms",

@@ -34,7 +34,7 @@ import sait from "./company/sait.png";
 import ai from "./ai.png";
 import youtube from "./youtube.png";
 import data from "./data.png";
-
+import teevision from "./teevision.png";
 export {
     logo,
     backend,
@@ -68,5 +68,6 @@ export {
     python,
     ai,
     youtube,
-    data
+    data,
+    teevision,
 };

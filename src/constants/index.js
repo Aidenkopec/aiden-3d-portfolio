@@ -28,6 +28,7 @@ import {
     youtube,
     data,
     teevision,
+    logo,
 } from "../assets";
 
 export const navLinks = [
@@ -121,17 +122,31 @@ const technologies = [
 
 const experiences = [
     {
-        title: "Industry Software Project ",
+        title: "Freelance Web Developer",
+        company_name: "Self-Employed",
+        icon: logo,
+        iconBg: "#383E56",
+        date: "2023 - Present",
+        points: [
+            "Design, develop, and maintain robust, scalable web applications using Node.js, Express.js, and MongoDB, demonstrating proficiency in full-stack development.",
+            "Integrate various APIs to enhance application functionality, showcasing expertise in API utilization.",
+            "Craft engaging, interactive user interfaces using React, JavaScript, HTML5/CSS3, Framer Motion, and Three.js, enhancing user experience and interaction.",
+            "Use Framer Motion and Three.js to create immersive user interfaces and animations, demonstrating creativity and technical skills in UI/UX design.",
+            "Develop websites using Wix and WordPress, demonstrating versatility and proficiency in different web development platforms.",
+            "Leverage AWS to establish scalable, reliable cloud infrastructure, ensuring optimal application performance and reliability.",
+        ],
+    },
+    {
+        title: "Industry Software Project",
         company_name: "SAIT Polytechnic and Launchcode",
         icon: sait,
         iconBg: "#383E56",
         date: "April 2022 - December 2022",
         points: [
-            "Led the development of a quote-to-cash system for commercial clients in the Oil & Gas industry as team leader.",
-            "Utilized technologies such as React, Typescript, Node.js, PostgreSQL, Git, Docker, and AWS.",
-            "Gained experience in project management, client relations, and technical skills including object-oriented programming, web development, software analysis, and database design and programming.",
-            "Provided support for front-end and back-end development, gathering client requirements, and designing workflows, functionalities, and reporting structures.",
-            "Conducted code reviews, testing, and bug tracking, and prepared technical documents.",
+            "Spearheaded the development of a quote-to-cash system for commercial clients in the Oil & Gas industry, demonstrating leadership and project management skills.",
+            "Employed a range of technologies including React, Typescript, Node.js, PostgreSQL, Git, Docker, and AWS, showcasing versatility and technical proficiency.",
+            "Managed front-end and back-end development, client requirements gathering, and workflow, functionality, and reporting structure design.",
+            "Performed code reviews, testing, and bug tracking, and prepared technical documents, ensuring code quality and project documentation.",
         ],
     },
     {
@@ -141,37 +156,26 @@ const experiences = [
         iconBg: "#E6DEDD",
         date: "2016 - Feb 2022",
         points: [
-            "Experienced Hockey Referee with over 6 years of experience officiating Junior A, B, Midget, and Bantam Hockey Teams in Canada.",
-            "Demonstrated leadership skills and the ability to work as part of a dynamic team, enforcing all rules and regulations of Hockey Canada and communicating professionally with players, coaches, and parents.",
-            "Managed conflicts and difficult situations effectively, making quick and hard decisions to maintain a safe and fair playing environment.",
-        ],
-    },
-    {
-        title: "Sales Consultant",
-        company_name: "Banana Republic",
-        icon: banana,
-        iconBg: "#383E56",
-        date: "2020 - Jan 2021",
-        points: [
-            "Skilled Retail Sales Associate with a demonstrated ability to provide outstanding customer service and promote loyalty in a fast-paced retail environment.",
-            "Acknowledged and assisted customers, locating merchandise effectively using various methods and promoting loyalty by educating customers about products and loyalty programs.",
-            "Supported sales floor, fitting room, check out, and back-of-house processes, contributing to the overall success of the store."
+            "Officiated Junior A, B, Midget, and Bantam Hockey Teams in Canada for over 6 years, demonstrating commitment and professionalism.",
+            "Enforced Hockey Canada rules and regulations, communicated professionally with players, coaches, and parents, showcasing leadership and communication skills.",
+            "Effectively managed conflicts and difficult situations, making quick, hard decisions to maintain a safe and fair playing environment.",
         ],
     },
     {
         title: "Concierge",
-        company_name: "Precision Hyundai,",
+        company_name: "Precision Hyundai",
         icon: hyundia,
         iconBg: "#E6DEDD",
         date: "2020 - 2020",
         points: [
-            "Detailed the interior and exterior of vehicles, using advanced techniques and products to restore the appearance and protect the value of customers' cars.",
-            "Shuttled customers from their homes to the dealership safely and professionally, ensuring that their experience was positive and stress-free.",
-            "Processed and cashiered payments in the service and parts departments, handling transactions accurately and efficiently and providing customers with clear and concise invoices and receipts.",
-            "Scheduled appointments for customer services over the phone, ensuring that customers received the services they needed at a time that was convenient for them.",
+            "Restored and protected the appearance and value of customers' cars by detailing interiors and exteriors using advanced techniques and products.",
+            "Provided professional and safe shuttle services for customers, ensuring a positive and stress-free experience.",
+            "Handled transactions accurately and efficiently in the service and parts departments, providing customers with clear invoices and receipts.",
+            "Scheduled customer service appointments over the phone, ensuring convenient service times for customers.",
         ],
     },
 ];
+
 
 const testimonials = [
     {
@@ -252,7 +256,7 @@ const projects = [
     {
         name: "Data Management Sorting Algorithms",
         description:
-        "Developed a high-performance Java multi-sorting algorithm that utilizes bubble, quick, insertion, selection, merge, and odd-even sorting algorithms. This solution offers lightning-fast sorting capabilities, enabling optimal efficiency.",
+            "Developed a high-performance Java multi-sorting algorithm that utilizes bubble, quick, insertion, selection, merge, and odd-even sorting algorithms. This solution offers lightning-fast sorting capabilities, enabling optimal efficiency.",
         tags: [
             {
                 name: "Java",

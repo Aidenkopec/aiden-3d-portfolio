@@ -47,27 +47,36 @@ const About = () => {
                 variants={fadeIn("", "", 0.1, 1)}
                 className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
             >
-                I am a driven software developer with experience in software architecture, database design, web
-                development, and object-oriented programming. I am proud to have supported company-wide business and
-                technology projects, exceeding quality expectations by gathering requirements, identifying user stories,
-                and developing applications, functionalities, and graphical user interfaces.
+                I am a dedicated software developer with a diverse range of experience in full-stack development,
+                front-end & back-end development. As a Freelance Web Developer, I design, develop, and maintain robust,
+                scalable applications using Node.js, Express.js, and MongoDB, and integrate various APIs. I craft
+                engaging user interfaces using React, JavaScript, HTML5/CSS3, Framer Motion, and Three.js and leverage
+                AWS for reliable cloud infrastructure. I also develop websites using Wix and WordPress, demonstrating
+                versatility and proficiency in different web development platforms.
+                <br/>
+                <br/>
+                In my role at SAIT Polytechnic and Launchcode, I spearheaded the development of a quote-to-cash system
+                for commercial clients in the Oil & Gas industry, managing front-end and back-end development, client
+                requirements gathering, and workflow design. I've worked extensively with React, Typescript, Node.js,
+                PostgreSQL, Git, Docker, and AWS.
                 <br/>
                 <br/>
                 My educational background includes a Diploma in Software Development from the Southern Alberta Institute
-                of Technology, where I gained valuable technical skills in Java, C++, Python, JavaScript, TypeScript,
-                React, Node.js, Express.js, AngularJS, Java Web, JSON, PostgreSQL, MySQL, NoSQL, MongoDB, HTML, and CSS.
-                I have also worked with development tools and environments such as IDE (IntelliJ IDEA, MS Visual
-                Studio), Slack Board, Git, GitHub, GitLab, AWS, and Docker.
+                of Technology, where I honed my technical skills in Java, C++, Python, JavaScript, TypeScript, React,
+                Node.js, Express.js, AngularJS, Java Web, JSON, PostgreSQL, MySQL, NoSQL, MongoDB, HTML, and CSS. I am
+                proficient with development tools and environments such as IDE (IntelliJ IDEA, MS Visual Studio), Slack
+                Board, Git, GitHub, GitLab, AWS, and Docker.
                 <br/>
                 <br/>
-                I am a hard-working and detail-oriented problem solver who has completed several impressive projects,
-                including an AI image generation application, a modern YouTube clone application, a multi-sorting
-                algorithm, and a graphical user interface for a Flight Reservation System. In my free time, I enjoy
-                skiing, hiking, and officiating hockey games, which has taught me the importance of teamwork,
-                communication, and decision-making under pressure. I believe my diverse set of technical skills and
-                passion for software development makes me a strong candidate for your team.
-
+                I am a diligent, detail-oriented problem solver with strong communication and leadership skills, honed
+                through my experience as a hockey referee and team leader in software projects. I have completed several
+                impressive projects, including an AI Image Generation Application, a modern 3D T-Shirt Designer, a
+                Multi-data-sorting Algorithm, and a YouTube Clone Application. In my free time, I enjoy skiing, hiking,
+                and officiating hockey games, which has taught me the importance of teamwork, communication, and
+                decision-making under pressure. I believe my diverse set of technical skills, soft skills, and passion
+                for software development makes me a strong candidate for your team.
             </motion.p>
+
 
             <div className='mt-20 flex flex-wrap gap-10'>
                 {services.map((service, index) => (

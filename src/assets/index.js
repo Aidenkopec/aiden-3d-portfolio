@@ -35,6 +35,8 @@ import ai from "./ai.png";
 import youtube from "./youtube.png";
 import data from "./data.png";
 import teevision from "./teevision.png";
+import opit from "./company/opit.png";
+import launchcode from "./company/launchcode.png";
 export {
     logo,
     backend,
@@ -57,7 +59,7 @@ export {
     tailwind,
     typescript,
     threejs,
-
+    opit,
     aws,
     java,
     postgreSql,
@@ -70,4 +72,5 @@ export {
     youtube,
     data,
     teevision,
+    launchcode,
 };

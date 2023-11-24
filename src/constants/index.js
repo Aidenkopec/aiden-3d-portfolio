@@ -29,6 +29,8 @@ import {
     data,
     teevision,
     logo,
+    opit,
+    launchcode,
 } from "../assets";
 
 export const navLinks = [
@@ -122,24 +124,22 @@ const technologies = [
 
 const experiences = [
     {
-        title: "Freelance Web Developer",
-        company_name: "Self-Employed",
-        icon: logo,
+        title: "Full Stack Engineer",
+        company_name: "One Piece IT",
+        icon: opit,
         iconBg: "#383E56",
         date: "2023 - Present",
         points: [
-            "Design, develop, and maintain robust, scalable web applications using Node.js, Express.js, and MongoDB, demonstrating proficiency in full-stack development.",
-            "Integrate various APIs to enhance application functionality, showcasing expertise in API utilization.",
-            "Craft engaging, interactive user interfaces using React, JavaScript, HTML5/CSS3, Framer Motion, and Three.js, enhancing user experience and interaction.",
-            "Use Framer Motion and Three.js to create immersive user interfaces and animations, demonstrating creativity and technical skills in UI/UX design.",
-            "Develop websites using Wix and WordPress, demonstrating versatility and proficiency in different web development platforms.",
-            "Leverage AWS to establish scalable, reliable cloud infrastructure, ensuring optimal application performance and reliability.",
+            "Leading the full development lifecycle of diverse applications, ensuring efficient deployment and robust performance.",
+            "Enhancing user satisfaction by 25% through collaborative team efforts and user-centric solutions.",
+            "Configuring and managing network architectures and server setups, demonstrating my proficiency in network engineering and ensuring reliable, efficient systems.",
+            "Employing a diverse tech stack including Node.js, Express.js, React, and AWS, to build scalable and secure applications",
         ],
     },
     {
-        title: "Industry Software Project",
-        company_name: "SAIT Polytechnic and Launchcode",
-        icon: sait,
+        title: "Software Developer",
+        company_name: "Launchcode",
+        icon: launchcode,
         iconBg: "#383E56",
         date: "April 2022 - December 2022",
         points: [

@@ -1,5 +1,6 @@
 import herobg from './assets/herobg.png';
 import herobgMidnightBlue from './assets/herobg_midnight_blue.png';
+
 const styles = {
     paddingX: "sm:px-16 px-6",
     paddingY: "sm:py-16 py-6",
@@ -31,11 +32,10 @@ const themes = [
         '--text-color-variable': '#915EFF',
         '--gradient-start': '#915EFF',
         '--gradient-end': 'rgba(0, 150, 255, 0)',
-        // ... add more variables as needed
     },
     {
         '--primary-color': '#0a192f',
-        '--secondary-color': '#ffffff',
+        '--secondary-color': '#e6f1ff',
         '--tertiary-color': '#2c3f5a',
         '--black-100-color': '#102a43',
         '--black-200-color': '#011627',
@@ -44,9 +44,7 @@ const themes = [
         '--text-color-variable': '#0096FF',
         '--gradient-start': '#0096FF',
         '--gradient-end': 'rgba(0, 150, 255, 0)',
-        // ... add more variables for the second theme
     },
-    // ... add as many themes as you like
 ];
 
 // Function to apply a random theme

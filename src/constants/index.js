@@ -128,12 +128,12 @@ const experiences = [
         company_name: "One Piece IT",
         icon: opit,
         iconBg: "#383E56",
-        date: "2023 - Present",
+        date: "May 2023 - December 2023",
         points: [
             "Leading the full development lifecycle of diverse applications, ensuring efficient deployment and robust performance.",
             "Enhancing user satisfaction by 25% through collaborative team efforts and user-centric solutions.",
             "Configuring and managing network architectures and server setups, demonstrating my proficiency in network engineering and ensuring reliable, efficient systems.",
-            "Employing a diverse tech stack including Node.js, Express.js, React, and AWS, to build scalable and secure applications",
+            "Employing a diverse tech stack including Node.js, Express.js, React, and AWS, to build scalable and secure applications.",
         ],
     },
     {
@@ -154,7 +154,7 @@ const experiences = [
         company_name: "Central Zone Referees",
         icon: central,
         iconBg: "#E6DEDD",
-        date: "2016 - Feb 2022",
+        date: "2016 - 2022",
         points: [
             "Officiated Junior A, B, Midget, and Bantam Hockey Teams in Canada for over 6 years, demonstrating commitment and professionalism.",
             "Enforced Hockey Canada rules and regulations, communicated professionally with players, coaches, and parents, showcasing leadership and communication skills.",

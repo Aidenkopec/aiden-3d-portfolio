@@ -65,7 +65,7 @@ const About = () => {
                 <br/>
                 My project portfolio features notable creations such as an AI Image Generator and a 3D T-Shirt Designer,
                 demonstrating my proficiency in cutting-edge web development. I've also developed an Article Summarizer,
-                showcasing my skills in creating concise article summaries
+                showcasing my skills in creating concise article summaries.
                 <br/>
                 <br/>
                 Outside of tech, I enjoy outdoor activities and sports like skiing, hiking, and fitness, which offer

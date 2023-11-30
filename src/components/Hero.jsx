@@ -19,8 +19,8 @@ const Hero = () => {
                         Hi, I'm<span style={{color: "var(--text-color-variable)"}}> Aiden</span>
                     </h1>
                     <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-                        A creative thinker with a talent <br className='sm:block hidden'/>
-                        for turning ideas into reality
+                        Dream. Design. Deliver <br className='sm:block hidden'/>
+                         turning ideas into reality
                     </p>
                 </div>
             </div>

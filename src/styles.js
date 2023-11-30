@@ -1,6 +1,8 @@
 import herobg from './assets/herobg.png';
 import herobgMidnightBlue from './assets/herobg_midnight_blue.png';
-
+import greenbg from './assets/greenbg.png';
+import heroblack from './assets/herobg_black.png';
+import herobg_adjusted from './assets/herobg_adjusted.png';
 const styles = {
     paddingX: "sm:px-16 px-6",
     paddingY: "sm:py-16 py-6",
@@ -17,9 +19,7 @@ const styles = {
         "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
 };
 
-// styles.js
 
-// Define a list of theme objects with colors
 const themes = [
     {
         '--primary-color': '#050816',
@@ -34,7 +34,7 @@ const themes = [
         '--gradient-end': 'rgba(0, 150, 255, 0)',
     },
     {
-        '--primary-color': '#0a192f',
+        '--primary-color': '#000b18',
         '--secondary-color': '#e6f1ff',
         '--tertiary-color': '#2c3f5a',
         '--black-100-color': '#102a43',
@@ -45,6 +45,34 @@ const themes = [
         '--gradient-start': '#0096FF',
         '--gradient-end': 'rgba(0, 150, 255, 0)',
     },
+
+    {
+        '--primary-color': '#09110a', // Dark Green, almost black
+        '--secondary-color': '#E6E6E6', // Light gray for clear text visibility
+        '--tertiary-color': '#132F2C', // Even darker green for depth
+        '--black-100-color': '#041F1E', // Very dark green, almost black
+        '--black-200-color': '#031413', // Darker for added depth
+        '--white-100-color': '#FFFFFF', // Crisp white for strong contrast on important text elements
+        '--hero-pattern': `url(${greenbg})`,
+        '--text-color-variable': '#39FF14', // Muted sage green for a sophisticated accent
+        '--gradient-start': '#39FF14', // green start for gradients
+        '--gradient-end': 'rgba(57, 255, 20, 0)', // Transparent end for gradient
+    },
+
+
+  {
+        '--primary-color': '#060606', // Rich black
+        '--secondary-color': '#FFFFFF', // Medium gray for clear text readability
+        '--tertiary-color': '#262626', // Dark gray for layers of shadow
+        '--black-100-color': '#0A0A0A', // Deep black for depth
+        '--black-200-color': '#000000', // True black for contrast
+        '--white-100-color': '#EEEEEE', // Light gray almost white for a stark contrast
+        '--hero-pattern': `url(${herobg_adjusted})`, // Replace with your actual obsidian or dark-themed background image
+        '--text-color-variable': '#DC143C', // Crimson red for a bold accent
+        '--gradient-start': '#00BCD4', // Cyan start for gradients
+        '--gradient-end': 'rgba(0, 188, 212, 0)', // Transparent gradient end
+    },
+
 ];
 
 // Function to apply a random theme
@@ -55,7 +83,6 @@ function applyRandomTheme() {
     }
 
 }
-
 
 // Apply a random theme on page load
 document.addEventListener('DOMContentLoaded', applyRandomTheme);

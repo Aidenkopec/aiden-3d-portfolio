@@ -76,16 +76,39 @@ const themes = [
 ];
 
 // Function to apply a random theme
+
+// Function to get a random index different from the last
+function getRandomThemeIndex(lastIndex) {
+    if (themes.length === 1) return 0; // If only one theme, always return 0
+
+    let newIndex;
+    do {
+        newIndex = Math.floor(Math.random() * themes.length);
+    } while (themes.length > 1 && newIndex === lastIndex); // Ensure we have more than one theme to choose from
+    return newIndex;
+}
+
+// Function to apply a random theme
 function applyRandomTheme() {
-    const theme = themes[Math.floor(Math.random() * themes.length)];
+    const lastThemeIndex = parseInt(localStorage.getItem('lastThemeIndex'), 10);
+
+    // Get a new random index, different from the last
+    const newThemeIndex = getRandomThemeIndex(lastThemeIndex);
+
+    // Apply the new theme
+    const theme = themes[newThemeIndex];
     for (const key in theme) {
         document.documentElement.style.setProperty(key, theme[key]);
     }
 
+    // Use a timeout to ensure the localStorage is updated after all operations
+    setTimeout(() => {
+        localStorage.setItem('lastThemeIndex', newThemeIndex);
+    }, 0);
 }
 
-// Apply a random theme on page load
-document.addEventListener('DOMContentLoaded', applyRandomTheme);
+// Apply a random theme when the page fully loads
+window.addEventListener('load', applyRandomTheme);
 
 
 export {styles};

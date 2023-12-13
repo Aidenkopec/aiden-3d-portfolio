@@ -67,7 +67,7 @@ const About = () => {
                 only shaped my personal life but also positively influenced my professional approach, adding depth to my
                 technical expertise.
                 <br/>
-                {/*<br/>*/}
+                <br/>
                 {/*Outside of tech, I enjoy outdoor activities and sports like skiing, hiking, and fitness, which offer*/}
                 {/*both physical and mental challenges. My passion for hockey, as both a player and referee, has taught me*/}
                 {/*valuable skills such as quick decision-making, teamwork, and resilience under pressure. These*/}

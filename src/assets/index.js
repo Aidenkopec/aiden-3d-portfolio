@@ -37,6 +37,7 @@ import data from "./data.png";
 import teevision from "./teevision.png";
 import opit from "./company/opit.png";
 import launchcode from "./company/launchcode.png";
+import evans from "./company/evans_consoles_logo.jpeg";
 export {
     logo,
     backend,
@@ -73,4 +74,5 @@ export {
     data,
     teevision,
     launchcode,
+    evans,
 };

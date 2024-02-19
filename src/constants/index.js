@@ -31,6 +31,7 @@ import {
     logo,
     opit,
     launchcode,
+    evans,
 } from "../assets";
 
 export const navLinks = [
@@ -124,6 +125,18 @@ const technologies = [
 
 const experiences = [
     {
+        title: "Full Stack Developer",
+        company_name: "Evans Consoles",
+        icon: evans,
+        iconBg: "#E6DEDD",
+        date: "February 2024 - Present",
+        points: [
+            "Developing and integrating innovative systems and applications to bolster efficiency in sales, engineering, manufacturing, and finance departments",
+            "Analyzing and mapping out comprehensive business processes across departments, creating optimized tools for enhanced operational efficiency.",
+            "Crafting and maintaining critical web-based dashboards and reports, delivering essential data to support continuous improvement efforts throughout the organization.",
+        ],
+    },
+    {
         title: "Full Stack Engineer",
         company_name: "One Piece IT",
         icon: opit,
@@ -161,19 +174,7 @@ const experiences = [
             "Effectively managed conflicts and difficult situations, making quick, hard decisions to maintain a safe and fair playing environment.",
         ],
     },
-    {
-        title: "Concierge",
-        company_name: "Precision Hyundai",
-        icon: hyundia,
-        iconBg: "#E6DEDD",
-        date: "2020 - 2020",
-        points: [
-            "Restored and protected the appearance and value of customers' cars by detailing interiors and exteriors using advanced techniques and products.",
-            "Provided professional and safe shuttle services for customers, ensuring a positive and stress-free experience.",
-            "Handled transactions accurately and efficiently in the service and parts departments, providing customers with clear invoices and receipts.",
-            "Scheduled customer service appointments over the phone, ensuring convenient service times for customers.",
-        ],
-    },
+
 ];
 
 

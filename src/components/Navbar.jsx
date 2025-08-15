@@ -5,12 +5,14 @@ import { styles } from '../styles';
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
 import MusicPlayer from './MusicPlayer';
+import ThemeSelector from './ThemeSelector';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [customizationOpen, setCustomizationOpen] = useState(false);
+  const [themeSelectorDesktop, setThemeSelectorDesktop] = useState(false);
+  const [themeSelectorMobile, setThemeSelectorMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +33,7 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${
+      } w-full flex items-center py-5 fixed top-0 z-50 ${
         scrolled ? 'bg-primary' : 'bg-transparent'
       }`}
     >
@@ -64,30 +66,74 @@ const Navbar = () => {
                 <a href={`#${nav.id}`}>{nav.title}</a>
               </li>
             ))}
-            <li className="flex items-center">
+            <li className="flex items-center gap-4 relative">
+              <button
+                onClick={() => setThemeSelectorDesktop(!themeSelectorDesktop)}
+                className="text-secondary hover:text-white text-[18px] font-medium cursor-pointer transition-colors"
+              >
+                Themes
+              </button>
+              <ThemeSelector
+                isOpen={themeSelectorDesktop}
+                onClose={() => setThemeSelectorDesktop(false)}
+              />
+            </li>
+            <li className="relative">
               <MusicPlayer
                 mobile={false}
                 externalOpen={false}
-                onExternalOpenChange={() => {}}
+                onExternalOpenChange={null}
               />
             </li>
           </ul>
         </div>
 
         <div className="sm:hidden flex flex-1 justify-end items-center gap-4">
-          {/* Hamburger Menu Button - always visible */}
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
+          {/* Hamburger Menu Button - inline SVG to ensure visibility */}
+          <button
+            aria-label="Toggle menu"
+            className="w-10 h-10 flex items-center justify-center rounded-md text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-white z-[100]"
             onClick={() => setToggle(!toggle)}
-          />
+          >
+            {toggle ? (
+              // Close icon (X)
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-7 h-7"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            ) : (
+              // Hamburger icon
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-7 h-7"
+              >
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            )}
+          </button>
 
           {/* Mobile Dropdown Menu - contains both nav links and music player */}
           <div
             className={`${
               !toggle ? 'hidden' : 'flex'
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[200px] z-10 rounded-xl`}
+            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[200px] z-50 rounded-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {/* Navigation Links */}
@@ -106,21 +152,28 @@ const Navbar = () => {
                 </li>
               ))}
 
-              {/* Music/Customization - integrated naturally */}
-              <li className="pt-2">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="text-secondary text-[14px] font-medium cursor-pointer hover:text-white transition-colors"
-                    onClick={() => setCustomizationOpen(!customizationOpen)}
-                  >
-                    Customization
-                  </span>
-                  <MusicPlayer
-                    mobile={true}
-                    externalOpen={customizationOpen}
-                    onExternalOpenChange={setCustomizationOpen}
-                  />
-                </div>
+              {/* Theme Selector */}
+              <li className="pt-2 relative">
+                <button
+                  className="text-secondary text-[16px] font-medium cursor-pointer hover:text-white transition-colors"
+                  onClick={() => setThemeSelectorMobile(!themeSelectorMobile)}
+                >
+                  Themes
+                </button>
+                <ThemeSelector
+                  isOpen={themeSelectorMobile}
+                  onClose={() => setThemeSelectorMobile(false)}
+                  isMobile={true}
+                />
+              </li>
+
+              {/* Songs */}
+              <li className="pt-2 relative">
+                <MusicPlayer
+                  mobile={true}
+                  externalOpen={false}
+                  onExternalOpenChange={null}
+                />
               </li>
             </ul>
           </div>

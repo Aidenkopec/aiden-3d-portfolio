@@ -14,6 +14,7 @@ import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import CanvasLoader from './Loader';
 import MusicPlayer from './MusicPlayer';
+import ThemeSelector from './ThemeSelector';
 
 export {
   Hero,
@@ -30,4 +31,5 @@ export {
   ComputersCanvas,
   StarsCanvas,
   MusicPlayer,
+  ThemeSelector,
 };

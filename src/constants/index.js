@@ -183,7 +183,7 @@ const projects = [
       'Founded and operated a digital agency delivering full-stack web applications, GPT-powered AI integrations, and SEO solutions. Led 8 client projects from planning to deployment, delivering production-ready platforms with modern technologies and achieving significant business growth for clients.',
     tags: [
       {
-        name: 'Vue 3',
+        name: 'Next,js',
         color: 'green-text-gradient',
       },
       {
@@ -195,7 +195,7 @@ const projects = [
         color: 'pink-text-gradient',
       },
       {
-        name: 'SEO',
+        name: 'EdgeDB',
         color: 'orange-text-gradient',
       },
     ],

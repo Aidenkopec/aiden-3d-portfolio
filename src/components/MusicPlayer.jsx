@@ -1,12 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const MusicPlayer = () => {
+const MusicPlayer = ({
+  mobile = false,
+  externalOpen = false,
+  onExternalOpenChange = null,
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [showControls, setShowControls] = useState(false);
   const [hasError, setHasError] = useState(false);
   const audioRef = useRef(null);
+
+  // Handle external control
+  useEffect(() => {
+    if (externalOpen !== null && externalOpen !== undefined) {
+      setShowControls(externalOpen);
+    }
+  }, [externalOpen]);
+
+  // Update parent when controls state changes
+  useEffect(() => {
+    if (onExternalOpenChange) {
+      onExternalOpenChange(showControls);
+    }
+  }, [showControls, onExternalOpenChange]);
 
   const playlist = [
     {
@@ -101,22 +119,19 @@ const MusicPlayer = () => {
       {/* Music toggle button */}
       <button
         onClick={() => setShowControls(!showControls)}
-        className="flex items-center justify-center w-10 h-10 rounded-full dynamic-gradient hover:opacity-80 transition-all duration-300 shadow-lg hover:shadow-xl"
-        title="Music Player"
+        className={`flex items-center justify-center rounded-full dynamic-gradient hover:opacity-80 transition-all duration-300 shadow-lg hover:shadow-xl ${
+          mobile ? 'w-7 h-7' : 'w-10 h-10'
+        }`}
+        title="Customization & Music"
       >
         <svg
-          className="w-5 h-5 text-white"
+          className={`text-white ${mobile ? 'w-3.5 h-3.5' : 'w-5 h-5'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
           <path
             fillRule="evenodd"
-            d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 011.414 0A9.972 9.972 0 0119 12a9.972 9.972 0 01-1.929 5.657 1 1 0 11-1.414-1.414A7.971 7.971 0 0017 12a7.971 7.971 0 00-1.343-4.243 1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-          <path
-            fillRule="evenodd"
-            d="M13.828 8.172a1 1 0 011.414 0A5.983 5.983 0 0117 12a5.983 5.983 0 01-1.758 3.828 1 1 0 11-1.414-1.414A3.987 3.987 0 0015 12a3.987 3.987 0 00-1.172-2.828 1 1 0 010-1.414z"
+            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
             clipRule="evenodd"
           />
         </svg>
@@ -124,7 +139,13 @@ const MusicPlayer = () => {
 
       {/* Expanded controls */}
       {showControls && (
-        <div className="absolute right-0 top-12 bg-black bg-opacity-90 backdrop-blur-sm rounded-lg p-4 min-w-[280px] shadow-2xl border border-gray-800">
+        <div
+          className={`absolute bg-black bg-opacity-90 backdrop-blur-sm rounded-lg p-4 shadow-2xl border border-gray-800 ${
+            mobile
+              ? 'right-0 top-10 min-w-[260px]'
+              : 'right-0 top-12 min-w-[280px]'
+          }`}
+        >
           {/* Track info */}
           <div className="text-center mb-3">
             {hasError ? (
@@ -269,7 +290,7 @@ const MusicPlayer = () => {
       )}
 
       {/* Custom slider styles */}
-      <style jsx>{`
+      <style>{`
         .slider::-webkit-slider-thumb {
           appearance: none;
           height: 12px;

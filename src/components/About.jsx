@@ -46,38 +46,35 @@ const About = () => {
         variants={fadeIn('', '', 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        As a software developer, I bring a distinctive mix of expertise in
-        full-stack, front-end, and back-end development. My tenure at Evans
-        Consoles is characterized by developing and integrating innovative
-        systems and applications to enhance efficiency in sales, engineering,
-        manufacturing, and finance departments. This role has enabled me to
-        deepen my expertise in analyzing and mapping comprehensive business
-        processes, creating optimized tools for operational efficiency, and
-        crafting web-based dashboards and reports that underpin continuous
-        improvement initiatives across the organization.
+        I'm a Full Stack Software Developer with a proven track record of
+        delivering scalable, production-grade systems that drive efficiency,
+        accuracy, and visibility across complex, multi-department environments.
+        My expertise spans backend automation, real-time reporting
+        infrastructure, ERP integrations, and full-stack platforms that support
+        high-impact operations across diverse business functions.
         <br />
         <br />
-        Previously, at One Piece IT, I was instrumental in transforming web and
-        mobile applications into highly efficient systems. At Launchcode, I
-        spearheaded the development of a pivotal quote-to-cash system for the
-        Oil & Gas industry, merging my technical prowess with adept project
-        management.
+        At Evans Consoles, I've developed 40+ custom KPI reports and 10
+        real-time dashboards, saving thousands of labor hours annually and
+        resolving $2M+ in inventory discrepancies. I built a comprehensive Bill
+        of Materials platform and implemented dynamic budgeting systems using
+        cutting-edge technologies like Vue 3, Node.js, BullMQ, and Redis,
+        achieving a 20x deployment speed improvement.
         <br />
         <br />
-        My educational background at the Southern Alberta Institute of
-        Technology equipped me with a broad skill set, including Java, C++,
-        Python, JavaScript, TypeScript, React, and various databases. Beyond
-        programming languages, I've developed innovative projects like an AI
-        Image Generator and a 3D T-Shirt Designer, demonstrating my capability
-        in advanced web technologies.
+        My technical arsenal includes modern frontend frameworks (Vue 3, React,
+        Next.js), robust backend technologies (Node.js, Python), advanced
+        databases (EdgeDB, PostgreSQL, Redis), and comprehensive DevOps
+        practices (Docker, Kubernetes, AWS). I excel at translating real-world
+        challenges into modern, high-performance software that drives tangible
+        business outcomes across organizations.
         <br />
         <br />
-        Outside of technology, I engage in outdoor activities like skiing,
-        hiking, and fitness, contributing to my mental agility and physical
-        well-being. My involvement in hockey, as a player and referee, has honed
-        my quick decision-making and teamwork skills. These experiences have not
-        only enriched my personal life but also positively influenced my
-        professional demeanor, adding depth to my technical expertise.
+        Beyond client work, I founded Solvex Digital, delivering full-stack web
+        applications and GPT-powered AI integrations to 8+ clients. I've also
+        developed sophisticated systems like containerized cryptocurrency
+        trading bots with advanced algorithmic strategies, demonstrating my
+        ability to tackle complex technical challenges across diverse domains.
         <br />
         <br />
       </motion.p>

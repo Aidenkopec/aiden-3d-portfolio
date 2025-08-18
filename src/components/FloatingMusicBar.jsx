@@ -53,25 +53,27 @@ const FloatingMusicBar = () => {
   const [shouldScrollArtist, setShouldScrollArtist] = useState(false);
   const titleRef = useRef(null);
   const artistRef = useRef(null);
-  
+
   const trackInfo = getTrackInfo();
 
   // Check if text overflows and needs scrolling
   useEffect(() => {
     const checkOverflow = () => {
       if (titleRef.current) {
-        const isOverflowing = titleRef.current.scrollWidth > titleRef.current.clientWidth;
+        const isOverflowing =
+          titleRef.current.scrollWidth > titleRef.current.clientWidth;
         setShouldScrollTitle(isOverflowing);
       }
       if (artistRef.current) {
-        const isOverflowing = artistRef.current.scrollWidth > artistRef.current.clientWidth;
+        const isOverflowing =
+          artistRef.current.scrollWidth > artistRef.current.clientWidth;
         setShouldScrollArtist(isOverflowing);
       }
     };
 
     // Check on mount and when text changes
     checkOverflow();
-    
+
     // Also check on resize
     window.addEventListener('resize', checkOverflow);
     return () => window.removeEventListener('resize', checkOverflow);
@@ -84,10 +86,10 @@ const FloatingMusicBar = () => {
 
   const handleTouchEnd = (e) => {
     if (!touchStart) return;
-    
+
     const touchEnd = e.changedTouches[0].clientX;
     const diff = touchStart - touchEnd;
-    
+
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
         nextTrack(); // Swipe left - next track
@@ -104,8 +106,8 @@ const FloatingMusicBar = () => {
   if (!isFloatingBarVisible || floatingBarMode === 'hidden') {
     return (
       <div className="fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none">
-        <div 
-          className="flex justify-end px-3 py-3" 
+        <div
+          className="flex justify-end px-3 py-3"
           style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}
         >
           <motion.button
@@ -126,8 +128,8 @@ const FloatingMusicBar = () => {
   if (floatingBarMode === 'mini') {
     return (
       <div className="fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none">
-        <div 
-          className="flex justify-center px-3 py-3" 
+        <div
+          className="flex justify-center px-3 py-3"
           style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}
         >
           <motion.div
@@ -136,13 +138,13 @@ const FloatingMusicBar = () => {
             className="pointer-events-auto"
           >
             <div className="flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-gray-800/50 rounded-full px-2.5 py-1.5 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-out">
-              <div 
+              <div
                 className="w-7 h-7 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex-shrink-0 flex items-center justify-center hover:rotate-12 hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 ease-out cursor-pointer"
                 onClick={() => setFloatingBarMode('standard')}
               >
                 <Icons.music className="w-3.5 h-3.5 text-white" />
               </div>
-              
+
               <button
                 onClick={togglePlay}
                 onTouchStart={handleTouchStart}
@@ -166,8 +168,8 @@ const FloatingMusicBar = () => {
   // Standard dock mode
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none">
-      <div 
-        className="flex justify-center px-2 py-3" 
+      <div
+        className="flex justify-center px-2 py-3"
         style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}
       >
         <AnimatePresence>
@@ -178,7 +180,7 @@ const FloatingMusicBar = () => {
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             className="pointer-events-auto relative w-auto"
           >
-            <div 
+            <div
               className="flex items-center gap-1.5 sm:gap-2 bg-black/80 backdrop-blur-md border border-gray-800/50 rounded-full px-2.5 py-1.5 sm:px-3 sm:py-1.5 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-out"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
@@ -188,7 +190,7 @@ const FloatingMusicBar = () => {
               </div>
 
               <div className="flex flex-col min-w-0 w-20 sm:w-24 cursor-pointer group overflow-hidden">
-                <div 
+                <div
                   ref={titleRef}
                   className={`text-xs font-medium text-white group-hover:text-purple-400 transition-colors duration-200 whitespace-nowrap ${
                     shouldScrollTitle ? 'animate-scroll' : ''
@@ -196,7 +198,7 @@ const FloatingMusicBar = () => {
                 >
                   {trackInfo.title}
                 </div>
-                <div 
+                <div
                   ref={artistRef}
                   className={`text-xs text-gray-400 group-hover:text-purple-300 transition-colors duration-200 whitespace-nowrap ${
                     shouldScrollArtist ? 'animate-scroll-slow' : ''
@@ -262,21 +264,33 @@ const FloatingMusicBar = () => {
       {/* Scrolling text animations */}
       <style jsx>{`
         @keyframes scroll {
-          0% { transform: translateX(0); }
-          95% { transform: translateX(-100%); }
-          100% { transform: translateX(0); }
+          0% {
+            transform: translateX(0);
+          }
+          95% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
-        
+
         @keyframes scroll-slow {
-          0% { transform: translateX(0); }
-          95% { transform: translateX(-80%); }
-          100% { transform: translateX(0); }
+          0% {
+            transform: translateX(0);
+          }
+          95% {
+            transform: translateX(-80%);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
-        
+
         .animate-scroll {
           animation: scroll 12s linear infinite;
         }
-        
+
         .animate-scroll-slow {
           animation: scroll-slow 15s linear infinite;
         }

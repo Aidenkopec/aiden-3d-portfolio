@@ -13,11 +13,18 @@
   color-scheme: dark;
 }
 
-/* Ensure default text color is always white regardless of theme */
+/* Prevent horizontal overflow and ensure proper viewport behavior */
 html,
-body,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  color: #ffffff;
+}
+
 #root {
   color: #ffffff;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .hash-span {

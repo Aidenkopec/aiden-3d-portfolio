@@ -15,6 +15,8 @@ import Contact from './Contact';
 import CanvasLoader from './Loader';
 import MusicPlayer from './MusicPlayer';
 import ThemeSelector from './ThemeSelector';
+import CustomizationMenu from './CustomizationMenu';
+import FloatingMusicBar from './FloatingMusicBar';
 
 export {
   Hero,
@@ -32,4 +34,6 @@ export {
   StarsCanvas,
   MusicPlayer,
   ThemeSelector,
+  CustomizationMenu,
+  FloatingMusicBar,
 };

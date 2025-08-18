@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 import { styles } from '../styles';
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
-import MusicPlayer from './MusicPlayer';
-import ThemeSelector from './ThemeSelector';
+import CustomizationMenu from './CustomizationMenu';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [themeSelectorDesktop, setThemeSelectorDesktop] = useState(false);
-  const [themeSelectorMobile, setThemeSelectorMobile] = useState(false);
+  const [customizationMenuDesktop, setCustomizationMenuDesktop] = useState(false);
+  const [customizationMenuMobile, setCustomizationMenuMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,21 +67,14 @@ const Navbar = () => {
             ))}
             <li className="flex items-center gap-4 relative">
               <button
-                onClick={() => setThemeSelectorDesktop(!themeSelectorDesktop)}
+                onClick={() => setCustomizationMenuDesktop(!customizationMenuDesktop)}
                 className="text-secondary hover:text-white text-[18px] font-medium cursor-pointer transition-colors"
               >
-                Themes
+                Customizations
               </button>
-              <ThemeSelector
-                isOpen={themeSelectorDesktop}
-                onClose={() => setThemeSelectorDesktop(false)}
-              />
-            </li>
-            <li className="relative">
-              <MusicPlayer
-                mobile={false}
-                externalOpen={false}
-                onExternalOpenChange={null}
+              <CustomizationMenu
+                isOpen={customizationMenuDesktop}
+                onClose={() => setCustomizationMenuDesktop(false)}
               />
             </li>
           </ul>
@@ -152,27 +144,18 @@ const Navbar = () => {
                 </li>
               ))}
 
-              {/* Theme Selector */}
+              {/* Customizations */}
               <li className="pt-2 relative">
                 <button
                   className="text-secondary text-[16px] font-medium cursor-pointer hover:text-white transition-colors"
-                  onClick={() => setThemeSelectorMobile(!themeSelectorMobile)}
+                  onClick={() => setCustomizationMenuMobile(!customizationMenuMobile)}
                 >
-                  Themes
+                  Customizations
                 </button>
-                <ThemeSelector
-                  isOpen={themeSelectorMobile}
-                  onClose={() => setThemeSelectorMobile(false)}
+                <CustomizationMenu
+                  isOpen={customizationMenuMobile}
+                  onClose={() => setCustomizationMenuMobile(false)}
                   isMobile={true}
-                />
-              </li>
-
-              {/* Songs */}
-              <li className="pt-2 relative">
-                <MusicPlayer
-                  mobile={true}
-                  externalOpen={false}
-                  onExternalOpenChange={null}
                 />
               </li>
             </ul>

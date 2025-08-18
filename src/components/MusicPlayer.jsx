@@ -1,16 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useMusicPlayer } from '../hooks/useMusicPlayer';
 
 const MusicPlayer = ({
   mobile = false,
   externalOpen = false,
   onExternalOpenChange = null,
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [currentTrack, setCurrentTrack] = useState(0);
   const [showControls, setShowControls] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const audioRef = useRef(null);
+  
+  const {
+    isPlaying,
+    volume,
+    currentTrack,
+    hasError,
+    playlist,
+    togglePlay,
+    nextTrack,
+    previousTrack,
+    selectTrack,
+    handleVolumeChange,
+  } = useMusicPlayer();
 
   // Handle external control
   useEffect(() => {
@@ -26,96 +35,8 @@ const MusicPlayer = ({
     }
   }, [showControls, onExternalOpenChange]);
 
-  const playlist = [
-    {
-      title: 'Deep Space',
-      src: '/music/deep-space.mp3',
-    },
-    {
-      title: 'Synthwave Nights',
-      src: '/music/synthwave-nights.mp3',
-    },
-    {
-      title: 'Digital Dreams',
-      src: '/music/digital-dreams.mp3',
-    },
-  ];
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.volume = volume;
-    }
-  }, [volume]);
-
-  const togglePlay = () => {
-    const audio = audioRef.current;
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play().catch((error) => {
-        console.warn('Audio playback failed:', error);
-        // Handle case where audio file doesn't exist
-        setIsPlaying(false);
-      });
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const nextTrack = () => {
-    const nextIndex = (currentTrack + 1) % playlist.length;
-    setCurrentTrack(nextIndex);
-    if (isPlaying) {
-      setTimeout(() => {
-        audioRef.current?.play().catch((error) => {
-          console.warn('Audio playback failed:', error);
-          setIsPlaying(false);
-        });
-      }, 100);
-    }
-  };
-
-  const previousTrack = () => {
-    const prevIndex =
-      currentTrack === 0 ? playlist.length - 1 : currentTrack - 1;
-    setCurrentTrack(prevIndex);
-    if (isPlaying) {
-      setTimeout(() => {
-        audioRef.current?.play().catch((error) => {
-          console.warn('Audio playback failed:', error);
-          setIsPlaying(false);
-        });
-      }, 100);
-    }
-  };
-
-  const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-  };
-
-  const handleTrackEnd = () => {
-    nextTrack();
-  };
-
   return (
     <div className="relative">
-      {/* Audio element */}
-      <audio
-        ref={audioRef}
-        src={playlist[currentTrack]?.src}
-        onEnded={handleTrackEnd}
-        onPlay={() => {
-          setIsPlaying(true);
-          setHasError(false);
-        }}
-        onPause={() => setIsPlaying(false)}
-        onError={() => {
-          setHasError(true);
-          setIsPlaying(false);
-        }}
-      />
-
       {/* Music toggle button */}
       <button
         onClick={() => setShowControls(!showControls)}
@@ -239,7 +160,7 @@ const MusicPlayer = ({
               max="1"
               step="0.1"
               value={volume}
-              onChange={handleVolumeChange}
+              onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
               className="flex-1 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer slider"
               style={{
                 background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${
@@ -256,14 +177,7 @@ const MusicPlayer = ({
               {playlist.map((track, index) => (
                 <button
                   key={index}
-                  onClick={() => {
-                    setCurrentTrack(index);
-                    if (isPlaying) {
-                      setTimeout(() => {
-                        audioRef.current?.play().catch(console.error);
-                      }, 100);
-                    }
-                  }}
+                  onClick={() => selectTrack(index)}
                   className={`w-full text-left px-2 py-1 rounded text-xs transition-colors ${
                     currentTrack === index
                       ? 'bg-purple-600 text-white'

@@ -29,6 +29,7 @@ const LANGUAGE_COLORS = {
 // Cache configuration
 const CACHE_KEY = 'github_data_cache';
 const CACHE_EXPIRATION = 60 * 60 * 1000; // 1 hour in ms
+const CACHE_VERSION = 2;
 
 // GitHub API service
 class GitHubService {
@@ -37,10 +38,21 @@ class GitHubService {
       const headers = GITHUB_TOKEN
         ? { Authorization: `token ${GITHUB_TOKEN}` }
         : {};
-      const response = await fetch(
-        `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`,
-        { headers }
-      );
+      let response = null;
+      if (GITHUB_TOKEN) {
+        // Authenticated endpoint returns the viewer; fallback to specific user
+        response = await fetch(`${GITHUB_API_BASE}/user`, { headers });
+        if (!response.ok) {
+          response = await fetch(
+            `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`,
+            { headers }
+          );
+        }
+      } else {
+        response = await fetch(`${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`, {
+          headers,
+        });
+      }
 
       if (!response.ok) {
         return null;
@@ -64,10 +76,25 @@ class GitHubService {
       const headers = GITHUB_TOKEN
         ? { Authorization: `token ${GITHUB_TOKEN}` }
         : {};
-      const response = await fetch(
-        `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
-        { headers }
-      );
+      let response = null;
+      if (GITHUB_TOKEN) {
+        // Include private repos, owned by the user
+        response = await fetch(
+          `${GITHUB_API_BASE}/user/repos?visibility=all&affiliation=owner&sort=updated&per_page=100`,
+          { headers }
+        );
+        if (!response.ok) {
+          response = await fetch(
+            `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
+            { headers }
+          );
+        }
+      } else {
+        response = await fetch(
+          `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
+          { headers }
+        );
+      }
 
       if (!response.ok) {
         return [];
@@ -80,7 +107,13 @@ class GitHubService {
         return [];
       }
 
-      return Array.isArray(data) ? data : [];
+      let repos = Array.isArray(data) ? data : [];
+      // If using /user/repos, filter to target owner
+      if (GITHUB_TOKEN && repos.length > 0) {
+        const target = (GITHUB_USERNAME || '').toLowerCase();
+        repos = repos.filter((r) => r?.owner?.login?.toLowerCase() === target);
+      }
+      return repos;
     } catch (error) {
       return [];
     }
@@ -141,10 +174,11 @@ class GitHubService {
 
   static async fetchCommitActivity() {
     try {
-      const repos = await this.fetchRepositories();
+      const repos = (await this.fetchRepositories()).filter((r) => !r.fork);
       const commitActivity = [];
       const oneYearAgo = new Date();
       oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+      const usernameLower = (GITHUB_USERNAME || '').toLowerCase();
 
       for (let i = 0; i < Math.min(repos.length, 10); i++) {
         const repo = repos[i];
@@ -180,10 +214,18 @@ class GitHubService {
             }
 
             commits.forEach((commit) => {
-              if (commit.author && commit.author.login === GITHUB_USERNAME) {
+              const authorLogin = commit.author?.login?.toLowerCase();
+              const committerLogin = commit.committer?.login?.toLowerCase();
+              const include =
+                authorLogin === usernameLower ||
+                committerLogin === usernameLower;
+              if (include) {
                 commitActivity.push({
-                  date: commit.commit.author.date,
-                  message: commit.commit.message,
+                  date:
+                    commit.commit?.author?.date ||
+                    commit.commit?.committer?.date ||
+                    repo.pushed_at,
+                  message: commit.commit?.message || 'Commit',
                   repo: repo.name,
                   sha: commit.sha,
                 });
@@ -205,6 +247,53 @@ class GitHubService {
 
       return commitActivity.sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (error) {
+      return [];
+    }
+  }
+
+  static async fetchRecentCommitsFromEvents(limit = 20) {
+    try {
+      const headers = GITHUB_TOKEN
+        ? { Authorization: `token ${GITHUB_TOKEN}` }
+        : {};
+      const eventsUrl = GITHUB_TOKEN
+        ? `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/events?per_page=100`
+        : `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/events/public?per_page=100`;
+      const response = await fetch(eventsUrl, { headers });
+
+      if (!response.ok) {
+        return [];
+      }
+
+      const events = await response.json();
+      if (!Array.isArray(events)) {
+        return [];
+      }
+
+      const commits = [];
+      for (const event of events) {
+        if (
+          event.type === 'PushEvent' &&
+          event.payload &&
+          Array.isArray(event.payload.commits)
+        ) {
+          const repoName =
+            event.repo?.name?.split('/')?.[1] || event.repo?.name || 'unknown';
+          for (const c of event.payload.commits) {
+            commits.push({
+              date: event.created_at,
+              message: c.message || 'Commit',
+              repo: repoName,
+              sha: c.sha || '',
+            });
+            if (commits.length >= limit) break;
+          }
+        }
+        if (commits.length >= limit) break;
+      }
+
+      return commits;
+    } catch (_) {
       return [];
     }
   }
@@ -255,10 +344,7 @@ class GitHubService {
   static async fetchContributionCalendar(year = null) {
     if (!GITHUB_TOKEN) {
       const commits = await this.fetchCommitActivity();
-      return {
-        weeks: this.generateCommitGraph(commits),
-        totalContributions: commits.length,
-      };
+      return this.generateCommitGraph(commits);
     }
 
     let fromDate = null;
@@ -312,10 +398,7 @@ class GitHubService {
     } catch (error) {
       console.error('Failed to fetch contribution calendar:', error);
       const commits = await this.fetchCommitActivity();
-      return {
-        weeks: this.generateCommitGraph(commits),
-        totalContributions: commits.length,
-      };
+      return this.generateCommitGraph(commits);
     }
   }
 }
@@ -557,7 +640,7 @@ const CommitGraph = ({
                           duration: 0.2,
                           delay: (weekIndex * 7 + dayIndex) * 0.001,
                         }}
-                        className="w-2 h-2 rounded-sm cursor-pointer hover:ring-1 hover:ring-[#915EFF] transition-all"
+                        className="rounded-sm cursor-pointer hover:ring-1 hover:ring-[#915EFF] transition-all w-[6px] h-[6px] sm:w-2 sm:h-2"
                         style={{
                           backgroundColor: getContributionColor(
                             day.contributionCount === 0
@@ -583,7 +666,7 @@ const CommitGraph = ({
                           duration: 0.2,
                           delay: (weekIndex * 7 + dayIndex) * 0.001,
                         }}
-                        className="w-2 h-2 rounded-sm cursor-pointer hover:ring-1 hover:ring-[#915EFF] transition-all"
+                        className="rounded-sm cursor-pointer hover:ring-1 hover:ring-[#915EFF] transition-all w-[6px] h-[6px] sm:w-2 sm:h-2"
                         style={{
                           backgroundColor: getContributionColor(day.level),
                         }}
@@ -600,7 +683,7 @@ const CommitGraph = ({
               {[0, 1, 2, 3, 4].map((level) => (
                 <div
                   key={level}
-                  className="w-2 h-2 rounded-sm"
+                  className="rounded-sm w-[6px] h-[6px] sm:w-2 sm:h-2"
                   style={{ backgroundColor: getContributionColor(level) }}
                 />
               ))}
@@ -650,8 +733,17 @@ const Projects = () => {
         // Check cache first
         const cachedData = localStorage.getItem(CACHE_KEY);
         if (cachedData) {
-          const { data, timestamp } = JSON.parse(cachedData);
-          if (Date.now() - timestamp < CACHE_EXPIRATION) {
+          const parsed = JSON.parse(cachedData);
+          const { data, timestamp, version } = parsed || {};
+          const isFresh =
+            typeof timestamp === 'number' &&
+            Date.now() - timestamp < CACHE_EXPIRATION;
+          const hasValidContent =
+            data &&
+            data.user &&
+            Array.isArray(data.repositories) &&
+            data.repositories.length > 0;
+          if (isFresh && version === CACHE_VERSION && hasValidContent) {
             setGithubData(data);
             setLoading({
               user: false,
@@ -661,9 +753,11 @@ const Projects = () => {
             });
             return;
           }
+          // purge invalid/old cache to avoid being overwritten later by partial updates
+          localStorage.removeItem(CACHE_KEY);
         }
 
-        // Fetch data
+        // Fetch all data first
         const [userData, repositories] = await Promise.all([
           GitHubService.fetchUserData(),
           GitHubService.fetchRepositories(),
@@ -673,9 +767,6 @@ const Projects = () => {
           setError('Unable to fetch GitHub data');
           return;
         }
-
-        setGithubData((prev) => ({ ...prev, user: userData }));
-        setLoading((prev) => ({ ...prev, user: false }));
 
         const totalStars = repositories.reduce(
           (sum, repo) => sum + repo.stargazers_count,
@@ -689,35 +780,45 @@ const Projects = () => {
         const contributionYears =
           new Date().getFullYear() - createdAt.getFullYear();
 
-        setGithubData((prev) => ({
-          ...prev,
-          repositories: repositories.slice(0, 6),
-          stats: { totalStars, totalForks, contributionYears },
-        }));
-        setLoading((prev) => ({ ...prev, repos: false }));
-
-        // Fetch languages
         const languages = await GitHubService.fetchLanguages(
-          repositories.slice(0, 10)
+          repositories.filter((r) => !r.fork).slice(0, 10)
         );
-        setGithubData((prev) => ({ ...prev, languages }));
-        setLoading((prev) => ({ ...prev, languages: false }));
 
-        // Fetch commits
-        const commitCalendar = await GitHubService.fetchContributionCalendar();
-        const commits = await GitHubService.fetchCommitActivity();
-        setGithubData((prev) => ({
-          ...prev,
+        const [commitCalendar, commitsFromEvents] = await Promise.all([
+          GitHubService.fetchContributionCalendar(),
+          GitHubService.fetchRecentCommitsFromEvents(25),
+        ]);
+
+        const commits =
+          Array.isArray(commitsFromEvents) && commitsFromEvents.length > 0
+            ? commitsFromEvents
+            : await GitHubService.fetchCommitActivity();
+
+        const freshData = {
+          user: userData,
+          repositories: repositories.slice(0, 6),
+          languages,
           commits: commits.slice(0, 5),
           commitCalendar,
-        }));
-        setLoading((prev) => ({ ...prev, commits: false }));
+          commitGraph: [],
+          stats: { totalStars, totalForks, contributionYears },
+        };
 
-        // Cache the data
+        // Update state
+        setGithubData(freshData);
+        setLoading({
+          user: false,
+          repos: false,
+          languages: false,
+          commits: false,
+        });
+
+        // Cache the fresh data
         localStorage.setItem(
           CACHE_KEY,
           JSON.stringify({
-            data: githubData,
+            version: CACHE_VERSION,
+            data: freshData,
             timestamp: Date.now(),
           })
         );
@@ -742,7 +843,25 @@ const Projects = () => {
       const commitCalendar = await GitHubService.fetchContributionCalendar(
         yearToFetch
       );
-      setGithubData((prev) => ({ ...prev, commitCalendar }));
+      setGithubData((prev) => {
+        const updated = { ...prev, commitCalendar };
+        // refresh cache with updated contributions only if core fields exist
+        if (
+          updated.user &&
+          Array.isArray(updated.repositories) &&
+          updated.repositories.length > 0
+        ) {
+          localStorage.setItem(
+            CACHE_KEY,
+            JSON.stringify({
+              version: CACHE_VERSION,
+              data: updated,
+              timestamp: Date.now(),
+            })
+          );
+        }
+        return updated;
+      });
       setLoading((prev) => ({ ...prev, commits: false }));
     };
     fetchForYear();
@@ -857,11 +976,11 @@ const Projects = () => {
 
               {loading.commits ? (
                 <LoadingSpinner />
-              ) : (
+              ) : githubData.commits && githubData.commits.length > 0 ? (
                 <div className="space-y-3">
                   {githubData.commits.slice(0, 5).map((commit, index) => (
                     <motion.div
-                      key={commit.sha}
+                      key={`${commit.sha || commit.date}-${index}`}
                       variants={fadeIn('up', 'spring', index * 0.1, 0.75)}
                       className="p-3 bg-[#1d1836] rounded-lg border border-[#232631] hover:border-[#915EFF] transition-colors duration-300"
                     >
@@ -885,6 +1004,10 @@ const Projects = () => {
                       </div>
                     </motion.div>
                   ))}
+                </div>
+              ) : (
+                <div className="text-center text-secondary py-4 text-sm">
+                  No recent commits found
                 </div>
               )}
             </Tilt>
